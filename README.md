@@ -10,20 +10,26 @@ using CNN-Encoder-Decoder model / CT_lung_image_segmentaion
 https://www.kaggle.com/kmader/finding-lungs-in-ct-data?select=2d_images.zip
 
 왜 폐 영역을 분리하는 문제를 풀어야 하는가 ?
+
 폐결핵, 폐암, 폐렴을 인공지능이 진단하기 위해서는 우선 폐영역을 정확히 분리해낼 필요가 있다.
-	1. 폐가 어딨는지 알아낸다.
-	2. 폐 영역안에서 폐렴, 폐암 등의 가능성을 검토한다.
+
+1. 폐가 어딨는지 알아낸다.
+2. 폐 영역안에서 폐렴, 폐암 등의 가능성을 검토한다.
 
 ### 모델 설명
 
 <img width="40%" src="https://user-images.githubusercontent.com/87109907/148348734-ae3cc642-74fc-495c-9610-020c99801596.png"/>
 
 CNN으로 이루어진 Convolutional encoder-decoder
+
 encoder : 차원을 축소해서 핵심 요소만 뽑아낸다.
+
 decoder : 압축된 정보로부터 차원 확장을 통해 원하는 정보를 복원한다.
 
 input은 ct사진 output은 0과 1로 폐와 폐가아닌 부분으로 나눈다.
+
 Downsampling은 MaxPooling2D을 사용
+
 Upsampling은 UpsamPling2D을 사용
 
 마지막엔 시그모이드 계층이 0과 1로 나눠준다.
@@ -33,6 +39,7 @@ upsampling이 뭐냐 ?
 <img width="40%" src="https://user-images.githubusercontent.com/87109907/148348775-b4c6ca02-4f65-4e65-a567-b4c917f9e79f.png"/>
 
 목표 : 
+
 차원을 줄여서 핵심정보만 뽑아낸다음에 다시 차원을 늘려서 마스크를 뽑아낼것이다.
 
 사용 기술 :
@@ -49,10 +56,6 @@ preprocessing :
 - skimage
 - sklearn
 - pandas
-
-
-<img width="40%" src=""/>
-<img width="40%" src=""/>
 
 참고 사이트 :
 
